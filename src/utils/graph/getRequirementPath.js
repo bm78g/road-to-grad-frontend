@@ -2,6 +2,7 @@ function getNode(id, nodes) {
     return nodes.find(n => n.id === id)
 }
 
+// Returns an array of all associated nodes with the clicked course.
 export default function getPathTo(id, nodes) {
     if (nodes === undefined)
         return
@@ -11,21 +12,20 @@ export default function getPathTo(id, nodes) {
     
     pushRequirements(courseObj, coursePath, nodes)  // Returns an array of array of requirement courses from each pre-requisite courses.
     coursePath = coursePath.flat()                  // Array.flat() to get a flat list of all requirements.
+    coursePath.push(nodes.find(n => n.id === id))
+
+    console.log(coursePath)
 
     return coursePath
 }
 
+// Recursive function that visits and logs all pre-requisite nodes.
 function pushRequirements(node, coursePath, nodes) {
-    if (node.requirement === undefined)
-        return
-    if (Object.entries(node.requirement).length == 0)
-        return
-
-    const plans = node.requirement.plans
-    const reqCourses = plans.map(plan => plan.courses).flat()
-    coursePath.push(reqCourses)
-
-    for (const courseId of reqCourses) {
-        pushRequirements(getNode(courseId, nodes), coursePath, nodes)
+    const prevNodes = nodes.filter(n => {
+        return n.edges.includes(node.id)
+    })
+    coursePath.push(prevNodes)
+    for (const prev of prevNodes) {
+        pushRequirements(prev, coursePath, nodes)
     }
 }
