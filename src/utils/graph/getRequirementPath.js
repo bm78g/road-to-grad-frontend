@@ -14,8 +14,6 @@ export default function getPathTo(id, nodes) {
     coursePath = coursePath.flat()                  // Array.flat() to get a flat list of all requirements.
     coursePath.push(nodes.find(n => n.id === id))
 
-    console.log(coursePath)
-
     return coursePath
 }
 
