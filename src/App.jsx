@@ -2,42 +2,12 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import './App.css'
-import NodeGraph from './components/Graph/NodeGraph'
+import CSGraph from './components/CSHome/CSGraph'
 import csLogo from './assets/pc-logo-placeholder.png'
 
 function App() {
   const baseUrl = 'http://localhost:3001/api/catalog/cs'
   const [csGraph, setCsGraph] = useState()
-
-  const csHomeGraph = [
-    {
-      id: 'major',
-      name: 'Major Requirements',
-      requirement: {},
-      edges: [],
-      dist: 0,
-      showId: false,
-      isDir: true
-    },
-    {
-      id: 'tech',
-      name: 'Technical Electives',
-      requirement: {},
-      edges: [],
-      dist: 0,
-      showId: false,
-      isDir: true
-    },
-    {
-      id: 'debug',
-      name: 'Non-dir node for debug',
-      requirement: {},
-      edges: [],
-      dist: 0,
-      showId: true,
-      isDir: false
-    }
-  ]
 
   useEffect(() => {
     axios.get(baseUrl).then(res => {
@@ -56,7 +26,7 @@ function App() {
       </div>
       {csGraph ? (
         <div id='graph-container'>
-          <NodeGraph nodes={csHomeGraph} />
+          <CSGraph />
         </div>
       ) : (
         'Loading...'
