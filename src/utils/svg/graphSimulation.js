@@ -12,7 +12,11 @@ export default function setSimulation(simulation, nodeHeight, [link, node, nameL
 
     nameLabel
         .attr('x', d => d.x)
-        .attr('y', d => d.y + 11)
+        .attr('y', d => {
+            if (d.showId)
+                return d.y + 11
+            return d.y
+        })
 
     idLabel
         .attr('x', d => d.x)

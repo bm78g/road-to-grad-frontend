@@ -28,11 +28,14 @@ export default function nodeSelectHandler(nodes) {
         // Adds an effect to all nodes with the 'selected' class.
         const coursePath = getPathTo(d.id, nodes)
         for (const course of coursePath) {
-            const selected = d3.selectAll(`.${course.id.toLowerCase()}`).classed('selected', true)
-            selected
-                .attr('stroke-width', 3)
-                .attr('stroke-opacity', 1)
-                .attr('stroke', '#CCCCCC')
+            const selector = `.${course.id.toLowerCase()}`
+            if (selector !== '.') {
+                const selected = d3.selectAll(selector).classed('selected', true)
+                selected
+                    .attr('stroke-width', 3)
+                    .attr('stroke-opacity', 1)
+                    .attr('stroke', '#CCCCCC')
+            }
         }
     }
 }

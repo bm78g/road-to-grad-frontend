@@ -10,6 +10,25 @@ function App() {
   const baseUrl = 'http://localhost:3001/api/catalog/cs'
   const [csGraph, setCsGraph] = useState()
 
+  const csHomeGraph = [
+    {
+      id: 'major',
+      name: 'Major Requirements',
+      requirement: {},
+      edges: [],
+      dist: 0,
+      showId: false
+    },
+    {
+      id: 'tech',
+      name: 'Technical Electives',
+      requirement: {},
+      edges: [],
+      dist: 0,
+      showId: false
+    }
+  ]
+
   useEffect(() => {
     axios.get(baseUrl).then(res => {
       setCsGraph(res.data)
@@ -27,7 +46,7 @@ function App() {
       </div>
       {csGraph ? (
         <div id='graph-container'>
-          <NodeGraph nodes={csGraph} />
+          <NodeGraph nodes={csHomeGraph} />
         </div>
       ) : (
         'Loading...'

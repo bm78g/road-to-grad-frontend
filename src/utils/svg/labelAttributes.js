@@ -15,6 +15,8 @@ export default function setLabelAttributes(container, nodes) {
         .data(nodes)
         .join('text')
         .text(d => {
+            if (!d.showId)
+                return ''
             if (d.name !== undefined)
                 return d.id.toUpperCase()
             return d.logic

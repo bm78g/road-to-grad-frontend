@@ -30,6 +30,16 @@ export default function NodeGraph({ nodes }) {
 
     // Pre-computes each nodes' positions.
     setNodePositions(nodes)
+    // Assigns showId without overriding pre-existing values.
+    nodes = nodes.map(node => {
+        if (!("showId" in node)) {
+            return {
+                ...node,
+                showId: true
+            }
+        }
+        return node
+    })
 
     useEffect(() => {
         // Root SVG.
@@ -72,9 +82,9 @@ export default function NodeGraph({ nodes }) {
         // Dynamically scales width according to text length.
         const padding = 20;
         nameLabel.each(function(d) {
-            const textWidth = this.getBBox().width;
-            d.dynamicWidth = Math.max(nodeHeight, textWidth + padding);
-        });
+            const textWidth = this.getBBox().width
+            d.dynamicWidth = Math.max(nodeHeight, textWidth + padding)
+        })
         node.attr('width', d => d.dynamicWidth)
 
         // Graph simulation tick update.
