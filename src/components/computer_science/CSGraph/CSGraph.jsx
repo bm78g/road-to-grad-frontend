@@ -3,18 +3,18 @@
 import { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 
-import './Graph.css'
-import setNodePositions from '../../utils/svg/nodePositions'
-import setGraphDefs from '../../utils/svg/graphDefinitions'
-import setNodeAttributes from '../../utils/svg/nodeAttributes'
-import setLinkAttributes from '../../utils/svg/linkAttributes'
-import setLabelAttributes from '../../utils/svg/labelAttributes'
-import setSimulation from '../../utils/svg/graphSimulation'
-import nodeSelectHandler from '../../utils/graph/nodeSelectHandler'
+import './CSGraph.css'
+import setNodePositions from '../../../utils/svg/nodePositions'
+import setGraphDefs from '../../../utils/svg/graphDefinitions'
+import setNodeAttributes from '../../../utils/svg/nodeAttributes'
+import setLinkAttributes from '../../../utils/svg/linkAttributes'
+import setLabelAttributes from '../../../utils/svg/labelAttributes'
+import setSimulation from '../../../utils/svg/graphSimulation'
+import nodeSelectHandler from '../../../utils/graph/nodeSelectHandler'
 
-import assignNodeProps from '../../utils/graph/assignNodeProps'
+import assignNodeProps from '../../../utils/graph/assignNodeProps'
 
-export default function NodeGraph({ nodes }) {
+export default function CSGraph({ nodes }) {
     const svgRef = useRef(null)
     const links = []
 
