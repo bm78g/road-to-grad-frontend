@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import './App.css'
-import NodeGraph from './components/Graph/Graph'
+import NodeGraph from './components/Graph/NodeGraph'
 import csLogo from './assets/pc-logo-placeholder.png'
 
 function App() {
@@ -27,6 +27,15 @@ function App() {
       dist: 0,
       showId: false,
       isDir: true
+    },
+    {
+      id: 'debug',
+      name: 'Non-dir node for debug',
+      requirement: {},
+      edges: [],
+      dist: 0,
+      showId: true,
+      isDir: false
     }
   ]
 

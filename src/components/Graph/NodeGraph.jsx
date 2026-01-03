@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
 
-import './Graph.css'
+import './NodeGraph.css'
 import setNodePositions from '../../utils/svg/nodePositions'
 import setGraphDefs from '../../utils/svg/graphDefinitions'
 import setNodeAttributes from '../../utils/svg/nodeAttributes'
