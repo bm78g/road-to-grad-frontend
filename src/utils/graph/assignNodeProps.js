@@ -1,3 +1,5 @@
+// Assigns 'showId' and 'isDir' properties to nodes if they are not already assigned.
+
 export default function assignNodeProps(nodes) {
     let modified = nodes
     // Assigns showId without overriding pre-existing values.
