@@ -1,6 +1,3 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-
 import './App.css'
 import CSGraph from './components/CSHome/CSGraph'
 import csLogo from './assets/pc-logo-placeholder.png'
