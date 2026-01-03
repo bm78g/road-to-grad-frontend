@@ -6,15 +6,6 @@ import CSGraph from './components/CSHome/CSGraph'
 import csLogo from './assets/pc-logo-placeholder.png'
 
 function App() {
-  const baseUrl = 'http://localhost:3001/api/catalog/cs'
-  const [csGraph, setCsGraph] = useState()
-
-  useEffect(() => {
-    axios.get(baseUrl).then(res => {
-      setCsGraph(res.data)
-    })
-  }, [])
-
   return (
     <>
       <div className='header-container'>
@@ -24,13 +15,7 @@ function App() {
         </div>
         <hr></hr>
       </div>
-      {csGraph ? (
-        <div id='graph-container'>
-          <CSGraph />
-        </div>
-      ) : (
-        'Loading...'
-      )}
+      <CSGraph />
     </>
   )
 }

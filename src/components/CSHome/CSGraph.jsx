@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react"
+import axios from "axios"
+
 import NodeGraph from "../Graph/NodeGraph"
 
 export default function CSGraph() {
@@ -31,7 +34,25 @@ export default function CSGraph() {
         }
     ]
 
+    const baseUrl = 'http://localhost:3001/api/catalog/cs'
+    const [csGraph, setCsGraph] = useState()
+
+    useEffect(() => {
+        axios.get(baseUrl).then(res => {
+            setCsGraph(res.data)
+        })
+    }, [])
+
     return (
-        <NodeGraph nodes={csHomeGraph} />
+        <>
+            <NodeGraph nodes={ csHomeGraph } />
+            {csGraph ? (
+                <div id="graph-container">
+                    <NodeGraph nodes={ csGraph } />
+                </div>
+            ) : (
+                'Loading...'
+            )}
+        </>        
     )
 }
