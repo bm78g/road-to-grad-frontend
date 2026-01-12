@@ -5,15 +5,7 @@ import * as d3 from 'd3'
 import getPathTo from '../graph/getRequirementPath'
 
 export default function nodeSelectHandler(nodes) {
-    return function (event, d) {
-        const clicked = nodes.find(node => {
-            if (d === undefined)
-                return false
-            if (d.id === node.id)
-                return true
-        })
-        console.log('ran')
-
+    return function (event, clicked) {
         event.stopPropagation()
 
         // Removes selected effect from all nodes and links.
@@ -27,9 +19,11 @@ export default function nodeSelectHandler(nodes) {
             .attr('stroke-opacity', 0.1)
             .attr('stroke', '#999')
 
+        // Guard condition, return if background is clicked.
         if (clicked === undefined)
             return
 
+        // Distinction between directory nodes and course nodes.
         if (clicked.isDir) {
             console.log('directory node')
         } else {
@@ -37,10 +31,10 @@ export default function nodeSelectHandler(nodes) {
             const selected = d3.select(this)
             selected.classed('selected', true)
 
-            if (d === undefined)
+            if (clicked === undefined)
                 return
             // Adds an effect to all nodes with the 'selected' class.
-            const coursePath = getPathTo(d.id, nodes)
+            const coursePath = getPathTo(clicked.id, nodes)
             for (const course of coursePath) {
                 const selector = `.${course.id.toLowerCase()}`
                 if (selector !== '.') {
