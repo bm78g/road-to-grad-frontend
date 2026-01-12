@@ -1,4 +1,4 @@
-// Renders the node graph with the given data.
+// Template node graph, renders a node graph with the given data.
 
 import { useEffect, useRef } from 'react'
 import * as d3 from 'd3'
@@ -32,7 +32,7 @@ export default function NodeGraph({ nodes }) {
 
     // Pre-computes each nodes' positions.
     setNodePositions(nodes)
-    assignNodeProps(nodes)
+    nodes = assignNodeProps(nodes)
 
     useEffect(() => {
         // Root SVG.
@@ -86,5 +86,5 @@ export default function NodeGraph({ nodes }) {
         return () => simulation.stop()
     }, [])
 
-    return <svg ref={svgRef} id='svg-elem'/>
+    return <svg ref={svgRef} />
 }

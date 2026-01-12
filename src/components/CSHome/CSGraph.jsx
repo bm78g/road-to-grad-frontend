@@ -6,6 +6,7 @@ import axios from "axios"
 import NodeGraph from "../Graph/NodeGraph"
 
 export default function CSGraph() {
+    // Graph for home page.
     const csHomeGraph = [
         {
             id: 'major',
@@ -36,6 +37,7 @@ export default function CSGraph() {
         }
     ]
 
+    // Graph for course data.
     const baseUrl = 'http://localhost:3001/api/catalog/cs'
     const [csGraph, setCsGraph] = useState()
 
@@ -45,9 +47,17 @@ export default function CSGraph() {
         })
     }, [])
 
+    const changeGraph = (id) => {
+        setCsGraphs(prev => 
+            prev.map(graph => ({
+                ...graph,
+                visible: graph.id === id
+            }))
+        )
+    }
+
     return (
         <>
-            <NodeGraph nodes={ csHomeGraph } />
             {csGraph ? (
                 <div id="graph-container">
                     <NodeGraph nodes={ csGraph } />
