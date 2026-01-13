@@ -20,8 +20,10 @@ export default function nodeSelectHandler(nodes, setShowInfo, setInfo) {
             .attr('stroke', '#999')
 
         // Guard condition, return if background is clicked.
-        if (clicked === undefined)
+        if (clicked === undefined) {
+            setShowInfo(false)
             return
+        }
 
         // Distinction between directory nodes and course nodes.
         if (clicked.isDir) {
@@ -31,8 +33,6 @@ export default function nodeSelectHandler(nodes, setShowInfo, setInfo) {
             const selected = d3.select(this)
             selected.classed('selected', true)
 
-            if (clicked === undefined)
-                return
             // Adds an effect to all nodes with the 'selected' class.
             const coursePath = getPathTo(clicked.id, nodes)
             for (const course of coursePath) {
@@ -49,8 +49,8 @@ export default function nodeSelectHandler(nodes, setShowInfo, setInfo) {
             if (clicked.logic === undefined) {
                 setShowInfo(true)
                 setInfo({
-                    title: "test",
-                    desc: "another test"
+                    title: clicked.name,
+                    desc: clicked.type
                 })
             }
         }
