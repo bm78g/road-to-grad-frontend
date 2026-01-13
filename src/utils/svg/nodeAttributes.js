@@ -1,6 +1,6 @@
 import nodeSelectHandler from '../graph/nodeSelectHandler'
 
-export default function setNodeAttributes(container, nodes, height) {
+export default function setNodeAttributes(container, nodes, height, setShowInfo, setInfo) {
     const node = container.append('g')
         .attr('stroke', '#fff')
         .selectAll('rect')
@@ -19,10 +19,19 @@ export default function setNodeAttributes(container, nodes, height) {
             return height
         })
         .attr('fill', n => {
-            if (n.requirement !== undefined) {
-                return 'url(#course)'
+            if (n.logic === undefined) {
+                switch (n.type) {
+                    case "major_prep":
+                        return 'url(#major_prep)'
+                    case 'major_core':
+                        return 'url(#major_core)'
+                    case 'tech_elective':
+                        return 'url(#tech_elective)'
+                    default:
+                        return 'url(#major_prep)'
+                }
             }
-            if (n.logic !== undefined) {
+            else {
                 switch (n.logic) {
                     case "AND":
                         return 'url(#and)'
@@ -40,7 +49,7 @@ export default function setNodeAttributes(container, nodes, height) {
             return 'course-node ' + d.id.toLowerCase()
         })
 
-    node.on('click', nodeSelectHandler(nodes))
+    node.on('click', nodeSelectHandler(nodes, setShowInfo, setInfo))
 
     return node
 }

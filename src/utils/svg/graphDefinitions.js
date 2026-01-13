@@ -16,7 +16,9 @@ export default function setGraphDefs(svg) {
 
     // Gradient based on node type.
     const gradients = {
-        course: ['#242a3b', '#2a3645'],
+        major_core: ['#242a3b', '#2a3645'],
+        major_prep: ['#292a47', '#322947'],
+        tech_elective: ['#2a453d', '#294733'],
         and: ['#a46449', '#a46449'],
         or: ['#3c593e', '#3c593e'],
         courseSelected: ['#383d6e', '#4d386e']
