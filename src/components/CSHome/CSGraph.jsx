@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 
 import NodeGraph from "../Graph/NodeGraph"
+import './CSGraph.css'
 
 export default function CSGraph() {
     // Graph for home page.
@@ -56,14 +57,23 @@ export default function CSGraph() {
         )
     }
 
+    const [showInfo, setShowInfo] = useState(false)
+    const [info, setInfo] = useState({
+        title: "",
+        desc: "",
+    })
+
     return (
         <>
             {csGraph ? (
                 <div id="graph-container">
-                    <NodeGraph nodes={ csGraph } />
+                    <NodeGraph nodes={ csGraph } setShowInfo={setShowInfo} setInfo={ setInfo } />
                 </div>
             ) : (
                 'Loading...'
+            )}
+            {showInfo && (
+                <div className="info-container">{info.desc}</div>
             )}
         </>        
     )

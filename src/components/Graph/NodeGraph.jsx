@@ -14,7 +14,7 @@ import nodeSelectHandler from '../../utils/graph/nodeSelectHandler'
 
 import assignNodeProps from '../../utils/graph/assignNodeProps'
 
-export default function NodeGraph({ nodes }) {
+export default function NodeGraph({ nodes, setShowInfo, setInfo }) {
     const svgRef = useRef(null)
     const links = []
 
@@ -43,7 +43,7 @@ export default function NodeGraph({ nodes }) {
             .attr('class', 'svg-root')
 
         svg.selectAll('*').remove() // Cleanup on rerender.
-        svg.on('click', nodeSelectHandler(nodes))
+        svg.on('click', nodeSelectHandler(nodes, setShowInfo))
 
         // Container under root for panning and zoom.
         const container = svg.append('g')
@@ -68,7 +68,7 @@ export default function NodeGraph({ nodes }) {
         const link = setLinkAttributes(container, links)
 
         const nodeHeight = 60
-        const node = setNodeAttributes(container, nodes, nodeHeight)
+        const node = setNodeAttributes(container, nodes, nodeHeight, setShowInfo, setInfo)
 
         const [nameLabel, idLabel] = setLabelAttributes(container, nodes)
 

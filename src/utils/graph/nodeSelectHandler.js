@@ -4,7 +4,7 @@ import * as d3 from 'd3'
 
 import getPathTo from '../graph/getRequirementPath'
 
-export default function nodeSelectHandler(nodes) {
+export default function nodeSelectHandler(nodes, setShowInfo, setInfo) {
     return function (event, clicked) {
         event.stopPropagation()
 
@@ -44,6 +44,14 @@ export default function nodeSelectHandler(nodes) {
                         .attr('stroke-opacity', 1)
                         .attr('stroke', '#CCCCCC')
                 }
+            }
+
+            if (clicked.logic === undefined) {
+                setShowInfo(true)
+                setInfo({
+                    title: "test",
+                    desc: "another test"
+                })
             }
         }
     }
