@@ -7,8 +7,8 @@ export default defineConfig({
     react({
       babel: {
         plugins: [['babel-plugin-react-compiler']],
-        base: "/road-to-grad-frontend/",
       },
     }),
   ],
+  base: "/road-to-grad-frontend/",
 })
