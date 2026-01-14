@@ -39,7 +39,7 @@ export default function CSGraph() {
     ]
 
     // Graph for course data.
-    const baseUrl = 'http://localhost:3001/api/catalog/cs'
+    const baseUrl = 'https://road-to-grad-backend.onrender.com/api/catalog/cs'
     const [csGraph, setCsGraph] = useState()
 
     useEffect(() => {
@@ -59,8 +59,10 @@ export default function CSGraph() {
 
     const [showInfo, setShowInfo] = useState(false)
     const [info, setInfo] = useState({
+        id: "",
         title: "",
         desc: "",
+        req: ""
     })
 
     return (
@@ -73,7 +75,16 @@ export default function CSGraph() {
                 'Loading...'
             )}
             {showInfo && (
-                <div className="info-container">{info.desc}</div>
+                <div className="info-container">
+                    <button onClick={() => setShowInfo(false)}>X</button>
+                    <h1>{ info.id.toUpperCase() }<br/>{ info.title }</h1>
+                    <hr></hr>
+                    <p>{ info.desc }<br/><br/>
+                    Pre-requisite: {
+                        info.req === '' || info.req === undefined ?
+                        'None' : info.req
+                    }</p>
+                </div>
             )}
         </>        
     )

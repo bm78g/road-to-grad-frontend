@@ -49,8 +49,10 @@ export default function nodeSelectHandler(nodes, setShowInfo, setInfo) {
             if (clicked.logic === undefined) {
                 setShowInfo(true)
                 setInfo({
+                    id: clicked.id,
                     title: clicked.name,
-                    desc: clicked.type
+                    desc: clicked.description,
+                    req: clicked.full_req
                 })
             }
         }
