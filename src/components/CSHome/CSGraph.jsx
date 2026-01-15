@@ -72,7 +72,7 @@ export default function CSGraph() {
                     <NodeGraph nodes={ csGraph } setShowInfo={setShowInfo} setInfo={ setInfo } />
                 </div>
             ) : (
-                'Loading...'
+                <div className="loading-text">Loading...</div>
             )}
             {showInfo && (
                 <div className="info-container">

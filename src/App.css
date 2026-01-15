@@ -77,6 +77,11 @@ hr {
     gap: 20px;
 }
 
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
 .tip-logo {
     width: 15px;
     height: 15px;
@@ -90,8 +95,6 @@ hr {
     pointer-events: none;
 
     position: absolute;
-    top: 14%;
-    left: 49%;
 
     width: 400px;
     height: 500px;
